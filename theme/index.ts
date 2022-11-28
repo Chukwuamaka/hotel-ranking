@@ -4,9 +4,11 @@ import buttonTheme from './components/button';
 import inputTheme from './components/input';
 import selectTheme from './components/select';
 import textareaTheme from './components/textarea';
+import typography from './typography';
 
 const overrides = {
   colors,
+  ...typography,
   components: {
     Button: buttonTheme,
     Input: inputTheme,
