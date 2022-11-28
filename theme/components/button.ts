@@ -1,6 +1,6 @@
 const buttonTheme = {
   baseStyle: {
-    fontWeight: 'medium',
+    fontWeight: 'normal',
     borderRadius: 4
   },
   variants: {
