@@ -7,7 +7,7 @@ export interface HotelListProps {
 export interface HotelBrand {
   id: string;
   name: string;
-  hotels: number;
+  hotels: Hotel[];
 }
 
 export interface Hotel {
