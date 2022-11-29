@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Box, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, VStack, Icon, FormControl, FormLabel, Input, Text, Select, Button } from "@chakra-ui/react";
 import { PencilSquareIcon, PhotoIcon } from "@heroicons/react/24/solid";
@@ -15,6 +15,16 @@ const AddHotel: FC<HotelModalProps> = ({ isOpen, onClose, data }) => {
   const [hotelLogo, setHotelLogo] = useState<string>('');
   const fileInput = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    const hotelBrandsList = localStorage.getItem('hotelBrandsList');
+    if (hotelBrandsList) {
+      const parsedHotelBrandsList: HotelBrand[] = hotelBrandsList && JSON.parse(hotelBrandsList);
+      if (hotelBrands.length !== parsedHotelBrandsList.length) {
+        setHotelBrands(parsedHotelBrandsList);
+      }
+    }
+  }, []);
+
   const uploadPicture = () => {
 
   }
@@ -24,14 +34,32 @@ const AddHotel: FC<HotelModalProps> = ({ isOpen, onClose, data }) => {
     setFormData({ ...formData, [name]: value });
   }
 
+  const updateHotelBrands = (newHotel: Hotel) => {
+    const newList = hotelBrands.map(brand => {
+      // Remove the hotel from its old brand
+      if (brand.id === data.brand) {
+        return { ...brand, hotels: brand.hotels.filter(item => item.brand !== data.brand) }
+      }
+      // Save the hotel to its new brand
+      if (brand.id === newHotel.brand) {
+        return { ...brand, hotels: [...brand.hotels, newHotel] }
+      }
+      return brand;
+    })
+    localStorage.setItem('hotelBrandsList', JSON.stringify(newList));
+  }
+
   const addHotel = (list: Hotel[]) => {
-    const newList = [...list, { ...formData, id: generateUniqueId() }];
+    const newHotel = { ...formData, id: generateUniqueId() }
+    const newList = [...list, newHotel];
     localStorage.setItem('hotelList', JSON.stringify(newList));
+    updateHotelBrands(newHotel);
   }
 
   const editHotel = (id: string, list: Hotel[]) => {
     const newList = list.map(item => {
       if (item.id === id) {
+        updateHotelBrands(formData);
         return formData;
       }
       return item;
