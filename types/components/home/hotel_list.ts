@@ -1,9 +1,13 @@
 import { StaticImageData } from "next/image";
 
+export interface HotelListProps {
+  query: string;
+}
+
 export interface HotelBrand {
   id: string;
   name: string;
-  hotels: number;
+  hotels: Hotel[];
 }
 
 export interface Hotel {

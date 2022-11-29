@@ -16,7 +16,7 @@ const AddHotelBrand: FC<HotelBrandModalProps> = ({ isOpen, onClose, data }) => {
   }
 
   const addHotelBrand = (list: HotelBrand[]) => {
-    const newList = [...list, { ...formData, id: generateUniqueId(), hotels: 0 }];
+    const newList = [...list, { ...formData, id: generateUniqueId(), hotels: [] }];
     localStorage.setItem('hotelBrandsList', JSON.stringify(newList));
   }
 
@@ -54,7 +54,7 @@ const AddHotelBrand: FC<HotelBrandModalProps> = ({ isOpen, onClose, data }) => {
     <Modal onClose={onClose} isOpen={isOpen} isCentered scrollBehavior='inside'>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader px={5} pt={6} pb={0}>Add/Edit Hotel</ModalHeader>
+        <ModalHeader px={5} pt={6} pb={0}>Add/Edit Hotel Brand</ModalHeader>
         <ModalCloseButton mt={3} />
         <ModalBody px={7} pt='45px' pb={5}>
           <form onSubmit={handleSubmit}>

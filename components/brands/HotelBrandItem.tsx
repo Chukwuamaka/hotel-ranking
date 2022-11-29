@@ -17,9 +17,9 @@ const HotelBrandItem: FC<HotelBrandItemProps> = ({ brand }) => {
       <Tr>
         <Td color='brand.gray.400' fontWeight='medium' borderBottom='0.5px solid #BABABA' borderColor='brand.gray.100'>{brand.name}</Td>
         <Td color='brand.gray.400' fontWeight='medium' borderBottom='0.5px solid #BABABA' borderColor='brand.gray.100'>{brand.id}</Td>
-        <Td color='brand.gray.400' fontWeight='medium' borderBottom='0.5px solid #BABABA' borderColor='brand.gray.100'>{brand.hotels}</Td>
+        <Td color='brand.gray.400' fontWeight='medium' borderBottom='0.5px solid #BABABA' borderColor='brand.gray.100'>{brand.hotels.length}</Td>
         <Td color='brand.gray.400' fontWeight='medium' borderBottom='0.5px solid #BABABA' borderColor='brand.gray.100'>
-          <HStack spacing={3}>
+          <HStack spacing={3.5}>
             <Button variant='unstyled' color='brand.lime.500' fontSize={14} minW='max-content' h='max-content' onClick={openEditModal}>
               Edit
             </Button>
