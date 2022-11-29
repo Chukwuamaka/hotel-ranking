@@ -17,11 +17,11 @@ const HotelList: FC<HotelListProps> = ({ query }) => {
   }, []);
 
   return (
-    <Box as='section' bg='brand.nearWhite' py={12} px={20}>
+    <Box as='section' bg='brand.nearWhite' py={12} px={[5, 8, 20]}>
       <Text as='h2' color='brand.lime.700' mb={12} textAlign='center' fontSize={[25, 31]} fontWeight='bold' className='responsive_1440px'>
         Favourite Hotels
       </Text>
-      <SimpleGrid gap={5} columns={3}>
+      <SimpleGrid gap={5} columns={{base: 1, md: 2, lg: 3}} placeItems='center' className='responsive_1440px'>
         {hotels.filter(hotel => hotel.name.toLowerCase().includes(query.toLowerCase()))
         .map(hotel => (
           <GridItem key={hotel.id}>
