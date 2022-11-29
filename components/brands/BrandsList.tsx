@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Input, Table, TableCaption, TableContainer, Tbody, Th, Thead, Tr, useDisclosure } from "@chakra-ui/react";
+import { Box, BoxProps, Button, Flex, Input, Table, TableCaption, TableContainer, Tbody, Th, Thead, Tr, useDisclosure } from "@chakra-ui/react";
 import { FC, useEffect, useState } from "react";
 import useSearch from "../../hooks/useSearch";
 import { HotelBrand } from "../../types/components/home/hotel_list";
@@ -11,7 +11,7 @@ const initialModalData: HotelBrand = {
   hotels: []
 }
 
-const BrandsList: FC = ({ ...props }) => {
+const BrandsList: FC<Pick<BoxProps, 'className'>> = ({ ...props }) => {
   const [hotelBrands, setHotelBrands] = useState<HotelBrand[]>([]);
   const { searchQuery, updateSearchQuery } = useSearch();
   const { isOpen: isAddModalOpen, onOpen: openAddModal, onClose: closeAddModal } = useDisclosure();
@@ -27,7 +27,7 @@ const BrandsList: FC = ({ ...props }) => {
   }, []);
 
   return (
-    <Box bg='white' py={9} px='30px' mt={9} borderRadius={10} boxShadow='0px 2px 15px rgba(0, 0, 0, 0.02)' {...props}>
+    <Box bg='white' py={9} px={{base: 4, md: '30px'}} mt={9} borderRadius={10} boxShadow='0px 2px 15px rgba(0, 0, 0, 0.02)' {...props}>
       <Flex justify='space-between'>
         <Input type='search' placeholder='Search hotel brand' maxW='40%' onChange={(e) => updateSearchQuery(e.target.value)} />
         <Button variant='outline' fontSize={14} fontWeight='normal' onClick={openAddModal}>Add Brand</Button>
