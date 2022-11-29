@@ -8,7 +8,7 @@ import HotelBrandItem from "./HotelBrandItem";
 const initialModalData: HotelBrand = {
   id: '',
   name: '',
-  hotels: 0
+  hotels: []
 }
 
 const BrandsList: FC = ({ ...props }) => {
