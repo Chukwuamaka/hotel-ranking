@@ -25,7 +25,7 @@ const DeleteHotelBrand: FC<HotelBrandModalProps> = ({ isOpen, onClose, data }) =
       <AlertDialogOverlay>
         <AlertDialogContent>
           <AlertDialogHeader color='brand.lime.700' fontSize='lg' fontWeight='bold'>
-            Delete Hotel
+            Delete Hotel Brand
           </AlertDialogHeader>
 
           <AlertDialogBody>
