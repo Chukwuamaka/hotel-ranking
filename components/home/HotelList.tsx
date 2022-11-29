@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from 'react';
-import { Box, GridItem, SimpleGrid, Stack, Text } from '@chakra-ui/react';
+import { Box, GridItem, SimpleGrid, Text } from '@chakra-ui/react';
 import HotelCard from './HotelCard';
-import { Hotel } from '../../types/components/home/hotel_list';
+import { Hotel, HotelListProps } from '../../types/components/home/hotel_list';
 
-const HotelList: FC = () => {
+const HotelList: FC<HotelListProps> = ({ query }) => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
 
   useEffect(() => {
@@ -22,7 +22,8 @@ const HotelList: FC = () => {
         Favourite Hotels
       </Text>
       <SimpleGrid gap={5} columns={3}>
-        {hotels.map(hotel => (
+        {hotels.filter(hotel => hotel.name.toLowerCase().includes(query.toLowerCase()))
+        .map(hotel => (
           <GridItem key={hotel.id}>
             <HotelCard data={hotel} />
           </GridItem>
