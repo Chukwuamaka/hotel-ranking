@@ -1,7 +1,7 @@
 import { StaticImageData } from "next/image";
 
 export interface HotelListProps {
-  query: string;
+  searchQuery: string;
 }
 
 export interface HotelBrand {

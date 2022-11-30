@@ -7,11 +7,11 @@ import useSearch from '../hooks/useSearch'
 
 const Home: NextPage = () => {
   const { searchQuery, updateSearchQuery } = useSearch();
-  
+
   return (
     <Page title='Hotel Ranking'>
       <Banner updateSearchQuery={updateSearchQuery} />
-      <HotelList query={searchQuery} />
+      <HotelList searchQuery={searchQuery} />
     </Page>
   )
 }
