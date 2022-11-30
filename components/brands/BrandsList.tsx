@@ -1,5 +1,6 @@
 import { Box, BoxProps, Button, Flex, Input, Table, TableCaption, TableContainer, Tbody, Th, Thead, Tr, Text, useDisclosure } from "@chakra-ui/react";
 import { FC, useEffect, useState } from "react";
+import useHotelBrands from "../../hooks/useHotelBrands";
 import useSearch from "../../hooks/useSearch";
 import { HotelBrand } from "../../types/components/home/hotel_list";
 import AddHotelBrand from "./AddHotelBrand";
@@ -12,19 +13,9 @@ const initialModalData: HotelBrand = {
 }
 
 const BrandsList: FC<Pick<BoxProps, 'className'>> = ({ ...props }) => {
-  const [hotelBrands, setHotelBrands] = useState<HotelBrand[]>([]);
+  const { hotelBrands } = useHotelBrands();
   const { searchQuery, updateSearchQuery } = useSearch();
   const { isOpen: isAddModalOpen, onOpen: openAddModal, onClose: closeAddModal } = useDisclosure();
-
-  useEffect(() => {
-    const hotelBrandsList = localStorage.getItem('hotelBrandsList');
-    if (hotelBrandsList) {
-      const parsedHotelBrandsList: HotelBrand[] = hotelBrandsList && JSON.parse(hotelBrandsList);
-      if (hotelBrands.length !== parsedHotelBrandsList.length) {
-        setHotelBrands(parsedHotelBrandsList);
-      }
-    }
-  }, []);
 
   return (
     <Box bg='white' py={9} px={{base: 4, md: '30px'}} mt={9} borderRadius={10} boxShadow='0px 2px 15px rgba(0, 0, 0, 0.02)' {...props}>
