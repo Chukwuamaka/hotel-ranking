@@ -15,3 +15,6 @@ This is a hotel directory application that allows users to maintain a list of th
 * Chakra UI
 * Typescript
 * Local Storage
+
+## Improvements
+The hotel feature image upload functionality has not been implemented yet. Hence, a dummy image is used in the hotel listings.
